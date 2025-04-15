@@ -23,7 +23,7 @@ class CVRotatorVideo:
         """
         self.angle = angle
         self.original_image = cv2.imread(image_path)
-        self.original_image = self.extend_to_square(self.original_image)
+        self.original_image = self.__extend_to_square(self.original_image)
         self.height, self.width, _ = self.original_image.shape
 
     def process(self, n_iter: int, output_path: Optional[str] = None, fps: int = 60) -> None:
@@ -51,7 +51,7 @@ class CVRotatorVideo:
             cv2.waitKey(1)  # Короткая пауза для отображения
 
             # Применение поворота
-            rotated_image = self.rotate_image(rotated_image, self.angle)
+            rotated_image = self.__rotate_image(rotated_image, self.angle)
 
         # Завершение записи видео
         if output_path is not None:
@@ -61,7 +61,7 @@ class CVRotatorVideo:
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
-    def rotate_image(self, image: np.ndarray, angle: float) -> np.ndarray:
+    def __rotate_image(self, image: np.ndarray, angle: float) -> np.ndarray:
         """Поворачивает изображение на заданный угол.
 
         Args:
@@ -74,7 +74,7 @@ class CVRotatorVideo:
         rotation_matrix = cv2.getRotationMatrix2D((self.width / 2, self.height / 2), angle, 1)
         return cv2.warpAffine(image, rotation_matrix, (self.width, self.height))
 
-    def extend_to_square(self, image: np.ndarray) -> np.ndarray:
+    def __extend_to_square(self, image: np.ndarray) -> np.ndarray:
         """Дополняет изображение до квадратной формы, добавляя черные поля.
 
         Args:

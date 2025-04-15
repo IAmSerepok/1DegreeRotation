@@ -22,7 +22,7 @@ class PillowRotator:
         self.output_path = output_path
         self.angle = angle
 
-    def rotate_image(self, input_path: str, output_path: str) -> None:
+    def __rotate_image(self, input_path: str, output_path: str) -> None:
         """Поворачивает изображение и сохраняет результат.
 
         Args:
@@ -40,9 +40,9 @@ class PillowRotator:
         Args:
             n_iter (int): Количество итераций поворота.
         """
-        self.rotate_image(self.input_path, self.output_path)
+        self.__rotate_image(self.input_path, self.output_path)
         for _ in range(n_iter - 1):
-            self.rotate_image(self.output_path, self.output_path)
+            self.__rotate_image(self.output_path, self.output_path)
 
 
 if __name__ == "__main__":  # Пример использования класса
