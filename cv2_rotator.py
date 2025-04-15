@@ -69,7 +69,7 @@ class CVRotatorVideo:
             angle (float): Угол поворота в градусах.
 
         Returns:
-            np.ndarray: Повернутое изображение.
+            rotated_image (np.ndarray): Повернутое изображение.
         """
         rotation_matrix = cv2.getRotationMatrix2D((self.width / 2, self.height / 2), angle, 1)
         return cv2.warpAffine(image, rotation_matrix, (self.width, self.height))
@@ -81,7 +81,7 @@ class CVRotatorVideo:
             image (np.ndarray): Входное изображение любой формы.
 
         Returns:
-            nd.array: Квадратное изображение с исходным изображением по центру.
+            extended_image (nd.array): Квадратное изображение с исходным изображением по центру.
         """
         height, width = image.shape[:2]
         max_dim = max(height, width)
